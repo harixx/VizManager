@@ -97,12 +97,8 @@ function App() {
     setSelectedProject(project);
   };
 
-  const handleBackToDashboard = () => {
-    setSelectedProject(null);
-  };
-
   const handleProjectUpdate = (updatedProject: Project) => {
-    setProjects(projects.map(p => p.id === updatedProject.id ? updatedProject : p));
+    setProjects(projects.map((p: Project) => p.id === updatedProject.id ? updatedProject : p));
     setSelectedProject(updatedProject);
   };
 
@@ -119,15 +115,10 @@ function App() {
   };
 
   const handleProjectDelete = (projectId: string) => {
-    setProjects(projects.filter(p => p.id !== projectId));
+    setProjects(projects.filter((p: Project) => p.id !== projectId));
     if (selectedProject && selectedProject.id === projectId) {
       setSelectedProject(null);
     }
-  };
-
-  const handleViewChange = (view: 'dashboard' | 'projects' | 'users') => {
-    setCurrentView(view);
-    setSelectedProject(null); // Clear selected project when changing views
   };
 
   const handleViewChangeExtended = (view: 'dashboard' | 'projects' | 'users' | 'audits' | 'reports') => {
