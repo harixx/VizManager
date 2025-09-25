@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { ArrowLeft, Plus, Search, Filter, Calendar, Globe, User, FileText, ExternalLink, Edit, Trash2, Eye, CalendarDays, X } from 'lucide-react';
 import { useTheme } from '../../contexts/ThemeContext';
-import { Audit, MOCK_AUDITS, BUSINESS_DEVELOPERS, AUDITORS, AUDIT_SHEET_TYPES } from '../../types/audit';
+import { Audit, BUSINESS_DEVELOPERS, AUDITORS, AUDIT_SHEET_TYPES } from '../../types/audit';
+import { useAudits } from '../../hooks/useDatabase';
 import AddAuditModal from './AddAuditModal';
 import EditAuditModal from './EditAuditModal';
 import MetricCard from '../ui/MetricCard';
@@ -13,7 +14,7 @@ interface AuditManagementDashboardProps {
 
 export default function AuditManagementDashboard({ onBack }: AuditManagementDashboardProps) {
   const { isDarkMode } = useTheme();
-  const [audits, setAudits] = useState<Audit[]>(MOCK_AUDITS);
+  const { audits, loading, error, addAudit, updateAudit, deleteAudit } = useAudits();
   const [showAddModal, setShowAddModal] = useState(false);
   const [editingAudit, setEditingAudit] = useState<Audit | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
