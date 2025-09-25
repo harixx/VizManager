@@ -13,6 +13,6 @@ export default defineConfig({
     hmr: {
       clientPort: 443,
     },
-    allowedHosts: 'all',
+    allowedHosts: ['.replit.dev', 'localhost'],
   },
 });
