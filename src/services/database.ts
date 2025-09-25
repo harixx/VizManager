@@ -8,6 +8,8 @@ import type { Report } from '../types/reports'
 // Projects
 export const projectsService = {
   async getAll(): Promise<Project[]> {
+    if (!supabase) throw new Error('Supabase not configured')
+    
     const { data, error } = await supabase
       .from('projects')
       .select(`
@@ -24,6 +26,8 @@ export const projectsService = {
   },
 
   async getById(id: string): Promise<Project | null> {
+    if (!supabase) throw new Error('Supabase not configured')
+    
     const { data, error } = await supabase
       .from('projects')
       .select(`
@@ -41,6 +45,8 @@ export const projectsService = {
   },
 
   async create(project: Omit<Project, 'id' | 'accessGranted' | 'progressReports' | 'documents' | 'queries'>): Promise<Project> {
+    if (!supabase) throw new Error('Supabase not configured')
+    
     const { data, error } = await supabase
       .from('projects')
       .insert({
@@ -67,6 +73,8 @@ export const projectsService = {
   },
 
   async update(id: string, updates: Partial<Project>): Promise<Project> {
+    if (!supabase) throw new Error('Supabase not configured')
+    
     const { data, error } = await supabase
       .from('projects')
       .update({
@@ -95,6 +103,8 @@ export const projectsService = {
   },
 
   async delete(id: string): Promise<void> {
+    if (!supabase) throw new Error('Supabase not configured')
+    
     const { error } = await supabase
       .from('projects')
       .delete()
@@ -131,6 +141,8 @@ export const projectsService = {
 // Users
 export const usersService = {
   async getAll(): Promise<User[]> {
+    if (!supabase) throw new Error('Supabase not configured')
+    
     const { data, error } = await supabase
       .from('users')
       .select('*')
@@ -141,6 +153,8 @@ export const usersService = {
   },
 
   async getById(id: string): Promise<User | null> {
+    if (!supabase) throw new Error('Supabase not configured')
+    
     const { data, error } = await supabase
       .from('users')
       .select('*')
@@ -152,6 +166,8 @@ export const usersService = {
   },
 
   async create(user: Omit<User, 'id' | 'createdAt'>): Promise<User> {
+    if (!supabase) throw new Error('Supabase not configured')
+    
     const { data, error } = await supabase
       .from('users')
       .insert({
@@ -172,6 +188,8 @@ export const usersService = {
   },
 
   async update(id: string, updates: Partial<User>): Promise<User> {
+    if (!supabase) throw new Error('Supabase not configured')
+    
     const { data, error } = await supabase
       .from('users')
       .update({
@@ -194,6 +212,8 @@ export const usersService = {
   },
 
   async delete(id: string): Promise<void> {
+    if (!supabase) throw new Error('Supabase not configured')
+    
     const { error } = await supabase
       .from('users')
       .delete()
@@ -221,6 +241,8 @@ export const usersService = {
 // Audits
 export const auditsService = {
   async getAll(): Promise<Audit[]> {
+    if (!supabase) throw new Error('Supabase not configured')
+    
     const { data, error } = await supabase
       .from('audits')
       .select('*')
@@ -231,6 +253,8 @@ export const auditsService = {
   },
 
   async create(audit: Omit<Audit, 'id' | 'createdAt'>): Promise<Audit> {
+    if (!supabase) throw new Error('Supabase not configured')
+    
     const { data, error } = await supabase
       .from('audits')
       .insert({
@@ -250,6 +274,8 @@ export const auditsService = {
   },
 
   async update(id: string, updates: Partial<Audit>): Promise<Audit> {
+    if (!supabase) throw new Error('Supabase not configured')
+    
     const { data, error } = await supabase
       .from('audits')
       .update({
@@ -271,6 +297,8 @@ export const auditsService = {
   },
 
   async delete(id: string): Promise<void> {
+    if (!supabase) throw new Error('Supabase not configured')
+    
     const { error } = await supabase
       .from('audits')
       .delete()
@@ -298,6 +326,8 @@ export const auditsService = {
 // Reports
 export const reportsService = {
   async getAll(): Promise<Report[]> {
+    if (!supabase) throw new Error('Supabase not configured')
+    
     const { data, error } = await supabase
       .from('reports')
       .select('*')
@@ -308,6 +338,8 @@ export const reportsService = {
   },
 
   async create(report: Omit<Report, 'id' | 'createdAt'>): Promise<Report> {
+    if (!supabase) throw new Error('Supabase not configured')
+    
     const { data, error } = await supabase
       .from('reports')
       .insert({
@@ -329,6 +361,8 @@ export const reportsService = {
   },
 
   async update(id: string, updates: Partial<Report>): Promise<Report> {
+    if (!supabase) throw new Error('Supabase not configured')
+    
     const { data, error } = await supabase
       .from('reports')
       .update({
@@ -352,6 +386,8 @@ export const reportsService = {
   },
 
   async delete(id: string): Promise<void> {
+    if (!supabase) throw new Error('Supabase not configured')
+    
     const { error } = await supabase
       .from('reports')
       .delete()
@@ -381,6 +417,8 @@ export const reportsService = {
 // Authentication
 export const authService = {
   async signUp(email: string, password: string, userData: { name: string; role: string }) {
+    if (!supabase) throw new Error('Supabase not configured')
+    
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
@@ -394,6 +432,8 @@ export const authService = {
   },
 
   async signIn(email: string, password: string) {
+    if (!supabase) throw new Error('Supabase not configured')
+    
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password
@@ -404,16 +444,22 @@ export const authService = {
   },
 
   async signOut() {
+    if (!supabase) throw new Error('Supabase not configured')
+    
     const { error } = await supabase.auth.signOut()
     if (error) throw error
   },
 
   async getCurrentSession() {
+    if (!supabase) throw new Error('Supabase not configured')
+    
     const { data: { session } } = await supabase.auth.getSession()
     return session
   },
 
   async getCurrentUser() {
+    if (!supabase) throw new Error('Supabase not configured')
+    
     const { data: { user } } = await supabase.auth.getUser()
     return user
   }
