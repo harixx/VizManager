@@ -14,42 +14,11 @@ export interface Notification {
 export const useNotifications = () => {
   const [notifications, setNotifications] = useState<Notification[]>([]);
 
-  // Simulate checking for deadline reminders
+  // TODO: Connect to real project data for deadline reminders
+  // For now, no mock notifications - notifications will be added when real events occur
   useEffect(() => {
-    const checkDeadlines = () => {
-      const now = new Date();
-      const mockNotifications: Notification[] = [
-        {
-          id: '1',
-          title: 'Project Deadline Approaching',
-          message: 'TechCorp Solutions project deadline is in 3 days',
-          type: 'warning',
-          timestamp: now.toISOString(),
-          read: false,
-          projectId: '1'
-        },
-        {
-          id: '2',
-          title: 'Milestone Completed',
-          message: 'SEO audit completed for GreenLeaf Organics',
-          type: 'success',
-          timestamp: new Date(now.getTime() - 86400000).toISOString(),
-          read: false,
-          projectId: '2'
-        }
-      ];
-
-      setNotifications(prev => {
-        const existingIds = prev.map(n => n.id);
-        const newNotifications = mockNotifications.filter(n => !existingIds.includes(n.id));
-        return [...prev, ...newNotifications];
-      });
-    };
-
-    checkDeadlines();
-    const interval = setInterval(checkDeadlines, 60000); // Check every minute
-
-    return () => clearInterval(interval);
+    // Placeholder for future real-time notification system
+    // This would check actual project deadlines from Supabase
   }, []);
 
   const markAsRead = (id: string) => {
