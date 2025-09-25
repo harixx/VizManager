@@ -1,0 +1,90 @@
+Core Project Management
+Project Dashboard - Central view of all projects with cards/grid layout
+Project Creation - Add new projects with detailed information
+Project Types Support - Milestone-based, Timer-based, Fixed projects, Direct client projects
+Project Status Management - Active, On Pause, Ended status tracking
+Project Details View - Comprehensive project information with tabbed interface
+Project Information Management
+Client Information - Client name, contact details, business developer assignment
+Team Management - Assign team members to projects
+Timeline Tracking - Start dates, duration, deadlines (for milestone projects)
+Upwork Profile Integration - Link projects to Upwork profiles
+Goals & KPIs Tracking - Set and monitor project objectives with progress tracking
+Focus Keywords Management - Track SEO keywords for each project
+Access Management
+Client Access Tracking - Record what access clients have granted
+Credential Management - Store website and email credentials securely
+Access Status Monitoring - Active, Pending, Revoked status tracking
+Access Notes - Additional information about access grants
+Document Management
+Project Documents - Organize various document types
+Document Categories - Progress reports, Google Sheets, Looker Studio reports, Internal docs
+Document Links - Store URLs to external documents
+Document Descriptions - Add context and notes for each document
+Client Communication
+Queries Management - Track client questions and responses
+Q&A System - Structured question-answer pairs
+Query Status Tracking - Open, In Progress, Resolved
+Linked Sheets - Connect queries to relevant documentation
+Assignment System - Assign queries to team members
+User Management & Authentication
+Role-Based Access Control - Admin, Manager, Viewer roles with different permissions
+User Creation & Management - Add, edit, delete users
+Project Assignment - Assign users to specific projects with granular permissions
+Section-Level Permissions - Control what sections users can view/edit
+User Status Management - Active/inactive user accounts
+Authentication System - Secure login with session management
+Audit Management
+Client Audits Tracking - Manage SEO audits for clients
+Audit Sheet Organization - Multiple audit sheet types (Technical, Content, Competitor, Keyword, Backlink)
+Auditor Assignment - Track who performed each audit
+Monthly Organization - Group audits by month
+Business Developer Tracking - Connect audits to business developers
+Reports Management
+Weekly Report Scheduling - Set up recurring weekly reports
+Report Day Assignment - Schedule reports for specific days of the week
+Department Organization - Organize reports by department
+Completion Tracking - Mark reports as completed
+Report Reminders - Today's reports, tomorrow's reports, pending reports
+Report History - Track completion history for each report
+Search & Filtering
+Global Search - Search across projects, team members, goals, keywords
+Advanced Filtering - Filter by status, project type, team members, dates
+Date Range Filtering - Filter projects by start date ranges
+Multi-criteria Filtering - Combine multiple filters
+Bulk Operations
+Bulk Selection - Select multiple projects for batch operations
+Bulk Status Updates - Change status for multiple projects at once
+Bulk Team Assignment - Add team members to multiple projects
+Bulk Export - Export selected projects to CSV
+Bulk Delete - Delete multiple projects with confirmation
+User Interface Features
+Dark/Light Theme - Toggle between light and dark modes
+Responsive Design - Works on desktop, tablet, and mobile
+Interactive Cards - Hover effects and animations
+Progress Visualization - Progress bars and charts
+Status Badges - Visual status indicators
+Tooltips - Helpful information on hover
+Loading States - Skeleton loading for better UX
+Empty States - Helpful messages when no data is available
+Notifications & Alerts
+Notification Center - Centralized notification system
+Unread Count - Badge showing unread notifications
+Notification Types - Info, warning, error, success notifications
+Mark as Read - Individual and bulk mark as read
+Data Management
+Supabase Integration - Backend database support with fallback to mock data
+Real-time Updates - Hot module replacement for development
+Data Persistence - Save all project data
+Import/Export - CSV export functionality
+Metrics & Analytics
+Project Metrics - Total projects, active projects, trends
+Dashboard Statistics - Visual metrics cards with trend indicators
+Progress Tracking - Project completion percentages
+Team Statistics - Team member counts and assignments
+Development Features
+TypeScript Support - Full type safety
+Component Library - Reusable UI components
+Context Management - Theme and authentication contexts
+Protected Routes - Route-level permission checking
+Environment Configuration - Support for different environments
