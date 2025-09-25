@@ -1,8 +1,7 @@
 import React from 'react';
-import { Calendar, Users, Target, ChevronRight, Trash2, Square, CheckSquare, Clock, User } from 'lucide-react';
+import { Calendar, Target, ChevronRight, Trash2, Square, CheckSquare, Clock, User } from 'lucide-react';
 import { Project } from '../types';
 import StatusBadge from './ui/StatusBadge';
-import ProgressChart from './ui/ProgressChart';
 import Tooltip from './ui/Tooltip';
 import { useTheme } from '../contexts/ThemeContext';
 
@@ -141,14 +140,14 @@ export default function ProjectCard({ project, isSelected = false, onSelect, onC
           isDarkMode ? 'text-gray-400' : 'text-gray-600'
         }`}>
           <Target className="h-4 w-4" />
-          <span>{project.teamMembers.length} team member{project.teamMembers.length !== 1 ? 's' : ''}</span>
+          <span>{project.teamMembers?.length || 0} team member{(project.teamMembers?.length || 0) !== 1 ? 's' : ''}</span>
         </div>
 
         <div className={`flex items-center gap-2 text-caption ${
           isDarkMode ? 'text-gray-400' : 'text-gray-600'
         }`}>
           <Target className="h-4 w-4" />
-          <span>{project.primaryGoals.length} active goal{project.primaryGoals.length !== 1 ? 's' : ''}</span>
+          <span>{project.primaryGoals?.length || 0} active goal{(project.primaryGoals?.length || 0) !== 1 ? 's' : ''}</span>
         </div>
 
         {/* Progress Bar */}
@@ -182,7 +181,7 @@ export default function ProjectCard({ project, isSelected = false, onSelect, onC
         isDarkMode ? 'border-gray-700' : 'border-gray-200'
       }`}>
         <div className="flex flex-wrap gap-1">
-          {project.focusKeywords.slice(0, 2).map((keyword, index) => (
+          {(project.focusKeywords || []).slice(0, 2).map((keyword, index) => (
             <Tooltip key={index} content={`Focus keyword: ${keyword}`}>
               <span
               key={index}
@@ -196,10 +195,10 @@ export default function ProjectCard({ project, isSelected = false, onSelect, onC
             </span>
             </Tooltip>
           ))}
-          {project.focusKeywords.length > 2 && (
-            <Tooltip content={`${project.focusKeywords.length - 2} more keywords: ${project.focusKeywords.slice(2).join(', ')}`}>
+          {(project.focusKeywords?.length || 0) > 2 && (
+            <Tooltip content={`${(project.focusKeywords?.length || 0) - 2} more keywords: ${(project.focusKeywords || []).slice(2).join(', ')}`}>
               <span className="badge badge-neutral hover-lift cursor-help">
-                +{project.focusKeywords.length - 2} more
+                +{(project.focusKeywords?.length || 0) - 2} more
               </span>
             </Tooltip>
           )}

@@ -31,7 +31,7 @@ export default function ProjectDetail({ project, onBack, onUpdate }: ProjectDeta
     equivalentHours: project.equivalentHours || 0,
     upworkProfile: project.upworkProfile || '',
     businessDeveloper: project.businessDeveloper || '',
-    teamMembers: [...project.teamMembers]
+    teamMembers: [...(project.teamMembers || [])]
   });
 
   const tabs = [
@@ -66,7 +66,7 @@ export default function ProjectDetail({ project, onBack, onUpdate }: ProjectDeta
       equivalentHours: project.equivalentHours || 0,
       upworkProfile: project.upworkProfile || '',
       businessDeveloper: project.businessDeveloper || '',
-      teamMembers: [...project.teamMembers]
+      teamMembers: [...(project.teamMembers || [])]
     });
     setShowSettingsModal(true);
   };
@@ -92,7 +92,7 @@ export default function ProjectDetail({ project, onBack, onUpdate }: ProjectDeta
       equivalentHours: project.equivalentHours || 0,
       upworkProfile: project.upworkProfile || '',
       businessDeveloper: project.businessDeveloper || '',
-      teamMembers: [...project.teamMembers]
+      teamMembers: [...(project.teamMembers || [])]
     });
     setShowSettingsModal(false);
   };
