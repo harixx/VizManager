@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { User, AuthContextType, MOCK_USERS, MOCK_CREDENTIALS, PERMISSION_LEVELS } from '../types/user';
+import { authService, usersService } from '../services/database';
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -51,9 +52,32 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }, []);
 
   const login = async (email: string, password: string): Promise<boolean> => {
-    
     try {
-      // Check mock credentials
+      // Try Supabase authentication first
+      const useSupabase = import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_ANON_KEY;
+      
+      if (useSupabase) {
+        try {
+          const { user: authUser } = await authService.signIn(email, password);
+          if (authUser) {
+            // Get user profile from database
+            const userProfile = await usersService.getById(authUser.id);
+            if (userProfile && userProfile.isActive) {
+              // Update last login
+              const updatedUser = await usersService.update(userProfile.id, {
+                lastLogin: new Date().toISOString()
+              });
+              setUser(updatedUser);
+              return true;
+            }
+          }
+          return false;
+        } catch (supabaseError) {
+          console.log('Supabase auth failed, falling back to mock auth:', supabaseError);
+        }
+      }
+      
+      // Fallback to mock credentials
       const validPassword = MOCK_CREDENTIALS[email as keyof typeof MOCK_CREDENTIALS];
       
       if (!validPassword || validPassword !== password) {
@@ -89,7 +113,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
-  const logout = () => {
+  const logout = async () => {
+    try {
+      const useSupabase = import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_ANON_KEY;
+      if (useSupabase) {
+        await authService.signOut();
+      }
+    } catch (error) {
+      console.error('Error signing out from Supabase:', error);
+    }
+    
     setUser(null);
     localStorage.removeItem('viz-manager-user');
     localStorage.removeItem('viz-manager-session-expiry');
