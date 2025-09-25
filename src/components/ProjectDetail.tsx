@@ -200,7 +200,7 @@ export default function ProjectDetail({ project, onBack, onUpdate }: ProjectDeta
               </div>
               <div className="flex items-center gap-2">
                 <Users className="h-4 w-4" />
-                <span>{project.teamMembers.join(', ')}</span>
+                <span>{(project.teamMembers || []).join(', ')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Target className="h-4 w-4" />
